@@ -1,0 +1,117 @@
+/** JQGRID table header color **/
+.ui-jqgrid .ui-widget-header {
+    background-color: #fbfbfb!important;
+    color: #383434;
+    background-image: none
+}
+/** JQGRID table header height **/
+.ui-jqgrid .ui-jqgrid-titlebar {
+	height: 18px;
+	padding: 0px 0px 0px 10px;
+}
+/** JQGRID column header color **/
+.ui-jqgrid .ui-jqgrid-labels th.ui-th-column {
+    background-color: #3C70B9!important;
+    background-image: none;
+}
+/** JQGRID row sl no color **/
+/* comment under vel by arun
+.ui-row-ltr td:nth-child(1) {
+    background-color: #3C70B9!important;
+    background-image: none;
+}*/
+/** JQGRID row sl no color **/
+#pg_jqGridPager, .ui-pager-table {
+    background-color: #3C70B9!important;
+    background-image: none;
+    display: table-row-group;
+}
+/** JQGRID table border color **/
+/*
+.ui-widget-content {
+    border: 0px solid #fbfbfb;
+}
+*/
+/** JQGRID filter row color **/
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    background-color: #3C70B9!important;
+    background-image: none;
+}
+/** pagination text color **/
+.ui-pg-input {
+	color: black;
+}
+/** JQGRID footer hide **/
+#jqGridPager {
+    display: none;
+}
+/** border for datas **/ /**  due to deleting grid border */
+.ui-jqgrid-bdiv {
+	border: 1px solid #a6c9e2;
+}
+/** border for data cells **/
+.ui-jqgrid-bdiv td{
+    border-color: blue;
+}
+
+.ui-state-hover {
+    color : #000!important;
+}
+thead .ui-state-hover {
+    color : #fff!important;
+}
+
+/** grid search modal header color **/
+.ui-widget-header {
+    background-color: #3C70B9!important;
+}
+.ui-jqdialog .ui-jqdialog-titlebar {
+    height: 27px !important;
+    background-color: #3C70B9!important;
+}
+.fm-button {
+    height: 24px !important;
+}
+
+
+
+
+/** grid data row wrap **/
+.ui-jqgrid tr.jqgrow td {
+    word-wrap: break-word; /* IE 5.5+ and CSS3 */
+    white-space: pre-wrap; /* CSS3 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    overflow: hidden;
+    height: auto;
+    vertical-align: middle;
+    padding-top: 3px;
+    padding-bottom: 3px
+}
+
+/** making pre space for all data cells **/
+.left_space {
+	padding-left : 5px;
+}
+
+/** for 2 nd table **/
+
+/** JQGRID footer hide **/
+
+
+#jqGridPager1 {
+	display: none;
+}
+
+.ui-jqgrid-titlebar {
+    cursor: pointer;
+}
+
+
+
+
+/** Jquery UI autocomplete on top of bootstrap model **/
+ .ui-autocomplete {
+z-index:1100!important; 
+}

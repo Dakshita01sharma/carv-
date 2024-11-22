@@ -1,0 +1,261 @@
+body {
+    padding-right: 0 !important;
+}
+
+.evenRow, .odd {
+    //background:#CBF0F9;
+    background: #C8E7EE;
+}
+
+#mainContent {
+    width: 75%;
+    float: right;
+}
+
+#filterContent {
+    float: left;
+    margin-bottom: 10px;
+}
+
+.customBtn {
+    margin-left: 5px;
+    margin-bottom: 5px;
+}
+
+    .customBtn .btn {
+        /* padding: 3px 25px; */
+        /* padding: 0px 10px 1px 7px; */
+        padding: 0px 10px 1px 7px;
+        margin-right: 5px;
+        margin-top: 5px;
+        border-radius: 0px;
+        border: 1px solid #fff;
+    }
+
+.inputBox {
+    width: 255px !important;
+    margin-bottom: 10px !important;
+    height: 38px !important;
+}
+
+#container {
+    width: 100%;
+    margin-top: 20px;
+}
+
+#marginheader {
+    width: 100%;
+    margin-top: 5px;
+}
+
+#fieldset1 {
+    //border: 2px solid #79c9ec;
+    margin-left: 25px;
+    width: 21.6%;
+}
+
+#legend1 {
+    text-align: center;
+    font-weight: bold;
+    color: #0078ae;
+    font-size: 20px;
+}
+
+.panel-body {
+    //padding: 10px 20px 0px 20px !important;
+    //height: 478px;
+}
+
+.glyphicon {
+    font-weight: bold;
+}
+
+div.Tokenize ul.TokensContainer {
+    height: 38px;
+}
+
+.tokenize-sample {
+    width: 255px;
+    height: 38px !important;
+}
+
+div.Tokenize ul.TokensContainer li.Token {
+    width: 100px;
+}
+
+div.Tokenize ul.TokensContainer li.Token {
+    line-height: 14px !important;
+}
+
+#actionBtn {
+    padding-bottom: 8px;
+}
+
+#addModal .modal-dialog {
+    width: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 50px;
+}
+
+#swModal .modal-dialog, #gpModal .modal-dialog, #ltModal .modal-dialog, #sfrModal .modal-dialog {
+    width: auto;
+    margin-left: 250px;
+    margin-right: 250px;
+    margin-top: 50px;
+}
+
+#venModal .modal-dialog {
+    width: auto;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: 50px;
+}
+
+#AppRejModal .modal-dialog, #workFlowModal .modal-dialog {
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 50px;
+}
+
+.innerContent {
+    min-height: auto;
+    max-height: 360px;
+    overflow-y: auto;
+    margin-top: -1px !important;
+    overflow-x: hidden;
+}
+
+    .innerContent select {
+        width: 120px;
+    }
+
+.ui-th-div {
+    //text-align:center !important;
+}
+
+.download {
+    cursor: pointer;
+}
+
+.ui-widget-header {
+    padding: 5px !important;
+}
+
+.modal-header {
+    border-radius: 3px;
+    border: 1px solid #77d5f7 !important;
+}
+
+.ui-jqgrid .ui-jqgrid-titlebar {
+    height: 28px !important;
+}
+
+.modal-header .close {
+    margin-top: 2px !important;
+    margin-right: 5px !important;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    padding: 3px 10px 3px 5px !important;
+    vertical-align: middle !important;
+    font-size: 11px;
+    font-weight: normal;
+}
+
+.innerContent th, .innerContent td {
+    border: 1px solid #77d5f7 !important;
+    border-top: none !important;
+}
+
+.modal-footer {
+    padding: 5px !important;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+th.ui-th-column div {
+    white-space: normal !important;
+    height: auto !important;
+    padding: 2px;
+}
+
+.bg-ringi {
+    padding: 5px;
+    background: #3c70b9;
+    color: #fff;
+    text-align: center;
+    /*font-weight: bold;*/
+}
+
+.btn-primary {
+    background-color: #3c70b9 !important;
+}
+
+.close {
+    color: #f5f5f5 !important;
+    opacity: .9 !important;
+}
+
+.ui-icon {
+    //display: inherit !important;
+    width: 20px;
+    height: 19px;
+}
+
+.cke_bottom {
+    display: none !important;
+}
+
+.newWindowBtn {
+    padding: 0px 10px 1px 7px;
+    margin-right: 12px;
+    margin-top: -30px;
+    border-radius: 0px;
+    background: #428bca;
+}
+
+.newWindowBtn1 {
+    padding: 0px 10px 1px 7px;
+    margin-right: 10px;
+    margin-top: 8px;
+    border-radius: 0px;
+    background: #428bca;
+}
+
+.head1 {
+    color: blue;
+    font-size: 18px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+/*Custom CSS for CARV color coding*/
+.bg-CarvUrgent {
+    padding: 5px;
+    background: #ff0000;
+    color: #fff !important;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.bg-CarvVAVE {
+    padding: 5px;
+    background: #ff6a00;
+    color: #fff !important;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.bg-CarvNormal {
+    padding: 5px;
+    background: #3c70b9;
+    color: #fff !important;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+}

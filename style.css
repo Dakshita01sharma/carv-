@@ -1,0 +1,20 @@
+.color-pending{
+    color: #F7BC73;
+}
+.bg-pending{
+    background-color: #F7BC73;
+}
+
+.bg-carv{
+    background-color: #428BCA;
+}
+.table-header .filter-container {
+    display: flex;
+    gap: 10px;
+  }
+  
+.table-header .filter-container select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

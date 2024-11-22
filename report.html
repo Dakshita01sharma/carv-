@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title></title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/ui.jqgrid.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/custom.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/jqGridOverRide.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/BootstrapOverRide.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/jquery.datetimepicker.css" />
+
+    <style type="text/css">
+        html {
+            user-select: none;
+        }
+
+        table tr {
+            min-height: 20px;
+        }
+
+        table tr td {
+            padding: 2px;
+            padding-left: 4px;
+        }
+
+        .lblHead1 {
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .lblHead2 {
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .lblHead3 {
+            font-weight: bold;
+            font-size: 11px;
+        }
+
+        .divFinalAppr {
+            max-width: 20%;
+            max-height: 150px;
+        }
+
+        .auto-style1 {
+            height: 22px;
+        }
+
+        html {
+            user-select: none;
+        }
+    </style>
+    <!-- <script>
+        //document.addEventListener('contextmenu', event => event.preventDefault());
+        //document.addEventListener('selectstart', event => event.preventDefault());
+        </script> -->
+
+</head>
+
+<body>
+    <style>
+        /* We are stopping user from 
+        printing our webpage */
+        @media print {
+
+            html,
+            body {
+
+                /* Hide the whole page */
+                display: none;
+            }
+        }
+    </style>
+    <!-- Your body content goes here -->
+
+</html>
+<form id="form1" runat="server">
+    <Label class="centered-label" ID="lblError" runat="server" Font-Bold="True" Font-Size="Large"
+        ForeColor="Red"></Label>
+    <table class="table1" cellspacing="0" cellpading="3"
+        style="width:100%; border:solid; font-family:Arial; font-size:12px;">
+        <tr>
+            <td colspan="2" rowspan="2" class="lblHead1"><img runat="server" id="pdfcomplogo"
+                    src="/assets/images/maruti_logo.png" alt="logo" /></td>
+            <td colspan="8" rowspan="2" class="lblHead1" text-align="center">CHANGE APPROVAL REQUEST </td>
+            <td colspan="1" class="lblHead3" text-align="center">ISSUE DATE</td>
+            <td colspan="1" rowspan="20" text-align="center" style="width:50px;">
+                S<br />
+                C<br />
+                /<br />
+                V<br />
+                E<br />
+                N<br />
+                D<br />
+                O<br />
+                R
+            </td>
+        </tr>
+        <tr>
+            <td colspan="1" class="lblHead3" text-align="center">
+                <Label ID="lblIssueDate" runat="server">
+                </Label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="lblHead3" text-align="center">CHANGE PROPOSED BY</td>
+            <td colspan="4" class="lblHead3" text-align="center"><input type="checkbox" id="chkproposedby"
+                    runat="server" RepeatDirection="Horizontal" Width="90%">
+                <li>&nbsp;MSIL</li>
+                <li>&nbsp;SMG</li>
+                <li>&nbsp;Vendors</li>
+            </td>
+            <td colspan="4" text-align="center" class="lblHead3"><input type="checkbox" id="chkECNECROTHER"
+                    runat="server" RepeatDirection="Horizontal" Width="90%">
+                <li>&nbsp;ECN</li>
+                <li>&nbsp;ECR</li>
+                <li>&nbsp;Others</li>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="lblHead3" text-align="center">CARV NO</td>
+            <td colspan="1" class="lblHead3" text-align="center">VENDOR CODE</td>
+            <td colspan="2" class="lblHead3" text-align="center">VENDOR NAME</td>
+            <td colspan="2" text-align="center" class="lblHead3">PART CLASS</td>
+            <td colspan="1" text-align="center" class="lblHead3">SAMPLE QUANTITY</td>
+            <td colspan="3" text-align="center" class="lblHead3">MODEL</td>
+        </tr>
+        <tr>
+            <td colspan="2" text-align="center"><Label ID="lblCarvNo" runat="server"></Label></td>
+            <td colspan="1" text-align="center"><Label ID="lblVendorCode" runat="server"></Label></td>
+            <td colspan="2" text-align="center"><Label ID="lblVendorName" runat="server"></Label></td>
+            <td colspan="2" text-align="center"><Label ID="lblPartClass" runat="server"></Label></td>
+            <td colspan="1" text-align="center"><Label ID="lblSampleQuantity" runat="server"></Label></td>
+            <td colspan="3" text-align="center"><Label ID="lblModel" runat="server"></Label></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="lblHead3" text-align="center">AFFECTED PART NAME</td>
+            <td colspan="5"><b>OLD</b>&nbsp;:&nbsp;<Label ID="lblOldPartName" runat="server"></Label></td>
+            <td colspan="4"><b>NEW</b>&nbsp;:&nbsp;<Label ID="lblNewPartName" runat="server"></Label></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="lblHead3" text-align="center">AFFECTED PART NO</td>
+            <td colspan="5"><b>OLD</b>&nbsp;:&nbsp;<Label ID="lblOldPartNo" runat="server"></Label></td>
+            <td colspan="4"><b>NEW</b>&nbsp;:&nbsp;<Label ID="lblNewPartNo" runat="server"></Label></td>
+
+        </tr>
+        <tr>
+            <td colspan="11" class="lblHead2" text-align="center">
+                A.] NATURE OF CHANGE
+            </td>
+        </tr>
+        <tr>
+            <td colspan="11" valign="top" style="padding-left:0px;">
+                <table class="table1" runat="server" id="tblNC" cellspacing="0"
+                    style="margin:0px; border:solid; width:100%">
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                DOES THIS CHANGE AFFECT ELV
+            </td>
+            <td colspan="1">
+                <input type="checkbox" id="chlChangeEffectELV" runat="server" RepeatDirection="Horizontal" Width="90%">
+                <li>&nbsp;Yes</li>
+                <li>&nbsp;No</li>
+            </td>
+            <td colspan="5">
+                IF YES, ELV COMPLIANCE ENSURED(Y/N)
+            </td>
+            <td colspan="2">
+                <input type="checkbox" id="chkComplience" runat="server" RepeatDirection="Horizontal" Width="90%">
+                <li>&nbsp;Yes</li>
+                <li>&nbsp;No</li>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                DOES IMDS UPDATION REQUIRED YES NO
+            </td>
+            <td colspan="1">
+                <input type="checkbox" id="chlIMDSUpdate" runat="server" RepeatDirection="Horizontal" Width="90%">
+                <li>&nbsp;Yes</li>
+                <li>&nbsp;No</li>
+            </td>
+            <td colspan="5">
+                IF YES, IMDS NODE ID
+            </td>
+            <td colspan="2">
+                <Label ID="lblIMDSNode" runat="server"></Label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="11" class="lblHead2">
+                For ITEM NO.1 (INNER PART INDEGINISED) Only
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                KD BUFFER STOCK REQUIRED AT VENDOR'S END
+            </td>
+            <td colspan="8" class="lblHead2">
+                <input type="checkbox" id="chkKDforItem" runat="server" RepeatDirection="Horizontal" Width="40%">
+                <li>&nbsp;Yes</li>
+                <li>&nbsp;No</li>
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="2">
+                QUANTITY : <Label ID="lblQuantity" runat="server"></Label>
+            </td>
+            <td colspan="9">
+                REMARKS : <Label ID="lblRemarks" runat="server"></Label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8" class="lblHead2" tex-align="center">
+                B.] REASONS AND DETAILS OF CHANGE
+            </td>
+            <td colspan="3" text-align="center">
+                BATCH CODE/IDENTIFICATION OF PARTS
+            </td>
+        </tr>
+        <tr>
+            <td colspan="8" text-align="center">
+                <Label ID="lblreasonforchange" runat="server"></Label>
+            </td>
+            <td colspan="3" text-align="center">
+                <Label ID="lblBatchCode" runat="server"></Label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="lblHead3">
+                INSPECTION AND TESTING DONE
+            </td>
+            <td colspan="9" text-align="center">
+                <Label ID="lblInspectionDone" runat="server"></Label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="9" class="lblHead2" text-align="center">
+                ENCLOSED
+            </td>
+            <td colspan="2" class="lblHead3" text-align="center">
+                VENDOR
+            </td>
+            <!-- <%-- <td colspan="2" class="lblHead3" text-align="center">  
+                   SC
+                </td>   --%> -->
+
+        </tr>
+        <tr>
+            <td colspan="3" valign="top" style="padding:0px;">
+                <table class="table1" runat="server" id="tblRptEnclosedLeft" cellspacing="0"
+                    style="margin:0px; border:solid; width:100%">
+                </table>
+
+            </td>
+            <td colspan="5" valign="top" style="padding:0px;">
+                <table class="table1" runat="server" id="tblRptEnclosedRight" cellspacing="0"
+                    style="margin:0px; border:solid; width:100%">
+                </table>
+            </td>
+            <td colspan="3" valign="top" style="padding:0px;">
+                <table class="table1" runat="server" id="tblVendorApproval" cellspacing="0"
+                    style="margin:0px; border:solid; width:100%;height:100%">
+                    <tr>
+                        <td class="lblHead3" text-align="center">PREPARED BY</td>
+                    </tr>
+                    <tr>
+                        <td text-align="center"><Label ID="lblVendorPreparedBy" runat="server"></Label> </td>
+                    </tr>
+                    <tr>
+                        <td class="lblHead3" text-align="center">APPROVED BY</td>
+                    </tr>
+                    <tr>
+                        <td text-align="center"><Label ID="lblVendorApprovedBy" runat="server"></Label> </td>
+                    </tr>
+                </table>
+            </td>
+            <td colspan="2" valign="top" style="padding:0px;">
+                <table class="table1" runat="server" id="tblSCApproval" cellspacing="0" border-style="1"
+                    style="margin:0px; width:100%">
+                </table>
+            </td>
+        </tr>
+        <tr style="height:20px">
+            <td colspan="11" valign="top" style="padding:0px;">
+                <table class="table1" runat="server" id="tblSCApproval" cellspacing="0"
+                    style="margin:0px; border:solid; width:100%">
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="11" class="lblHead2">
+                C.] INITIAL EVALUATION(FOR INNER PART INDESIGNED/NEW SUB-VENDOR/DESIGN/MATERIAL CHANGES/ LIQUIDATION
+                ONLY)
+            </td>
+            <!-- <td colspan="1" class="lblHead3" align="center">  
+                   DATE
+                </td>  
+                  <td colspan="2"  align="center">  
+                   <asp:Label ID="lblENDate1" runat="server"></asp:Label>   
+                </td> -->
+            <td colspan="1" rowspan="4" text-align="center">
+                E<br />
+                N<br />
+                G<br />
+                G
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="lblHead3">
+                TYPES OF EVALUATION TO BE DONE BY QA-PQ/PE:
+            </td>
+            <td colspan="8">
+                <Label ID="lblTypeofEvaluation" runat="server"></Label>
+            </td>
+        </tr>
+        <tr>
+
+            <td colspan="11" text-align="left">
+                <b> D]. ECN/ECR NO :</b>&nbsp;<Label ID="lblECNNo" runat="server"></Label>
+            </td>
+
+        </tr>
+        <tr style="height:20px">
+            <td colspan="11" valign="top" style="padding:0px;">
+                <table class="table1" runat="server" id="tblENApproval1" cellspacing="0"
+                    style="margin:0px; border: 1px solid; width:100%">
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="11" class="auto-style1">
+                <b>THE CHANGE AFFECTS:</b>&nbsp;
+            </td>
+            <td colspan="1" rowspan="12" text-align="center">
+
+                Q<br />
+                A<br />
+                P<br />
+                Q<br />
+                /<br />
+                P<br />
+                E<br />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="lblHead3">
+                MARU-A ITEM
+            </td>
+            <td colspan="8" class="lblHead3">
+                <input type="checkbox" ID="chkAFFECTSMarua" runat="server" />
+                &nbsp;&nbsp;PLEASE SEE 'F' IF YES
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="lblHead3">
+                FUNCTIONAL ITEM
+            </td>
+            <td colspan="8" class="lblHead3">
+                <input type="checkbox" ID="chkAFFECTSFunctional" runat="server" />
+                &nbsp;&nbsp;PLEASE SEE 'F' IF YES
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="lblHead3">
+                EMISSION ITEM
+            </td>
+            <td colspan="8" class="lblHead3">
+                <input type="checkbox" ID="chkAFFECTSEMISSION" runat="server" />
+                &nbsp;&nbsp;PLEASE SEE 'F' IF YES
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="lblHead3">
+                IN CASE OF GENERAL CHANGE
+            </td>
+            <td colspan="8" class="lblHead3">
+                <input type="checkbox" ID="chkAFFECTSGENERAL" runat="server" />
+            </td>
+        </tr>
+        <tr>
+
+            <td colspan="3" class="lblHead3">
+                ENDURANCE TESTING REQUIRED
+            </td>
+            <td colspan="8" class="lblHead3">
+                <Label ID="lblEnduranceTestingRequired" runat="server"></Label>
+            </td>
+        </tr>
+        <tr>
+
+            <td colspan="3" class="lblHead3">
+                PERFORMANCE TESTING REQUIRED
+            </td>
+            <td colspan="8" class="lblHead3">
+                <Label ID="lblPerformanceTestingRequired" runat="server"></Label>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td colspan="3" class="lblHead3">
+                E.] 2 STAGE SAMPLE EVALUATION
+            </td>
+            <td colspan="8" class="lblHead3" text-align="left">
+                <input type="checkbox" id="chkSampleEvaluation" runat="server" RepeatDirection="Horizontal" Width="80%">
+                <li>&nbsp;Required</li>
+                <li>&nbsp;Not Required</li>
+                <li>&nbsp;Direct 2nd Stage</li>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="lblHead3">
+                Stage 1- Initial Sample /1st off tool evaluation
+            </td>
+            <td colspan="8" class="lblHead3">
+                &nbsp;<input type="checkbox" ID="chkInitialSample" runat="server" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="lblHead3">
+                Stage 2- Mass Production Evaluation
+            </td>
+            <td colspan="8" class="lblHead3">
+                &nbsp;<input type="checkbox" ID="chkMassProduction" runat="server" />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <b> No. of Samples require : </b>&nbsp;<Label ID="lblFPPQuantity" runat="server"></Label>
+            </td>
+            <td colspan="1">
+                <b>FPP LOT REQUIRED </b>&nbsp;<input type="checkbox" ID="chkFPPlotRequired" runat="server" />
+            </td>
+            <td colspan="1">
+                <b>REGULAR SUPPLIES : </b> &nbsp;<input type="checkbox" ID="chkRegularSupplies" runat="server" />
+            </td>
+            <td colspan="1" class="lblHead3">
+                FPP&nbsp;done
+            </td>
+            <td colspan="3"><input type="checkbox" id="chkFPPdone" runat="server" RepeatDirection="Horizontal"
+                    Width="99%">
+                <li>&nbsp;Yes</li>
+                <li>&nbsp;No</li>
+            </td>
+            <td colspan="3">
+                <b>DATE: </b> &nbsp;<Label ID="lblFPPTentativeDate" runat="server"></Label>
+            </td>
+
+        </tr>
+        <tr style="height:20px">
+            <td colspan="11" valign="top" style="padding:0px;">
+                <table class="table1" runat="server" id="tblQAApproval1" cellspacing="0"
+                    style="margin:0px; border:solid; width:100%">
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="lblHead3">
+                F.] ENDURANCE TESTING REQUIRED/NOT REQUIRED. :
+            </td>
+            <td colspan="8">
+                <Label ID="lblENEnduranceTest" runat="server"></Label>
+            </td>
+            <td colspan="1" rowspan="5" text-align="center">
+                E<br />
+                N<br />
+                G<br />
+                G<br />
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="lblHead3">
+                G.] PERFORMANCE TESTING REQUIRED. :
+            </td>
+            <td colspan="8">
+                <Label ID="lblENPerformanceTest" runat="server"></Label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="lblHead3">
+                H.] HOMOLOGATION COMPLIANCE REQD/NOT REQD DOMESTIC OR BOTH. &nbsp;<Label ID="lblHomologationComplience"
+                    runat="server"></Label>
+                &nbsp;<Label ID="lblTypeofComplianceCheck" runat="server"></Label>
+            </td>
+            <td colspan="8">
+                <b>EN-7H Comment: </b>&nbsp;<Label ID="lblEN7HComment" runat="server"></Label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" class="lblHead3">
+                FPP LOT REQUIRED : &nbsp;<input type="checkbox" ID="chkFPPlotRequired2" runat="server" />
+            </td>
+            <td colspan="3">
+                <b>REGULAR SUPPLIES : </b> &nbsp;<input type="checkbox" ID="chkRegularSupplies2" runat="server" />
+            </td>
+            <td colspan="5">&nbsp;</td>
+        </tr>
+        <tr style="height:20px">
+            <td colspan="11" valign="top" style="padding:0px;">
+                <table class="table1" runat="server" id="tblENApproval2" cellspacing="0"
+                    style="margin:0px; border:solid; width:100%">
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="11" class="lblHead3">I.] PRECAUTIONS TO BE TAKEN IN THE SUPPLIES TO LINE PRODUCTION AND
+                INSPECTION
+            </td>
+            <td colspan="1" rowspan="5" text-align="center">
+                E<br />
+                N<br />
+                G<br />
+                G<br />
+                /<br />
+                Q<br />
+                A<br />
+                P<br />
+                Q<br />
+                /<br />
+                P<br />
+                E<br />
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="11" class="lblHead3">
+                &nbsp;<Label ID="lblSUBWFLPERemarks" runat="server"></Label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="1" class="lblHead3">
+                CHASSIS/ ENGINE NO
+            </td>
+            <td colspan="2">
+                <input type="checkbox" id="chkENRequired" runat="server" RepeatDirection="Horizontal" Width="99%">
+                <li>&nbsp;Required</li>
+                <li>&nbsp;Not Required</li>
+            </td>
+            <td colspan="8" text-align="center">
+                <Label ID="lblENQAChassisNo" runat="server"></Label>
+            </td>
+
+        </tr>
+        <tr>
+            <td colspan="11" class="lblHead3">APPROVAL BASED UPON THE NATURE OF CHANGE(Tick on Checking and Approvl
+                Engg/(QAPQ/PE) Authority)
+            </td>
+        </tr>
+        <tr style="height:20px">
+            <td colspan="11" valign="top" style="padding:0px;">
+                <table class="table1" runat="server" id="tblFinalAppr" cellspacing="0"
+                    style="margin:0px; border:solid; width:100%">
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="12" class="lblHead3">
+                IF THE TYPE OF CHANGE IS GENERAL THEN APPROVAL TILL DDVM: FOR REST TYPE OF CHANGE APPROVAL TILL EO
+                REQUIRED
+            </td>
+        </tr>
+        <tr>
+            <td colspan="12">
+                ROUTE:&nbsp;
+                1. (FOR ITEMS&nbsp;<Label ID="lblRout1" runat="server"></Label>)&nbsp;Vendor --- > SC --- > ENGG --- >
+                QA-PQ/PE(If Reqd.) --- > ENGG --- > SC -- > Vendor.</td>
+        </tr>
+        <tr>
+            <td colspan="12">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                2. (FOR ITEMS&nbsp;<Label ID="lblRout2" runat="server"></Label>)&nbsp;Vendor --- > SC --- > QAPQ/PE ---
+                > ENGG(If Reqd.) --- > QAPQ/PE --- > SC -- > Vendor.</td>
+        </tr>
+        <tr>
+            <td colspan="12" text-align="center">
+                For the CARVs having change type marked such as that both the routes are applicable for approval, in
+                such cases approval route of CARV
+                will be route-1 by default. </td>
+        </tr>
+        <tr>
+            <td colspan="1">
+                E002-1 </td>
+            <td colspan="10" text-align="center">
+                QA-PG/SC </td>
+            <td colspan="1" text-align="center">
+                <!-- <img runat="server" id="pdflogo"  src="/assets/images/logo.png" style="height:35px;" />                    -->
+                -->
+            </td>
+        </tr>
+        <tr>
+            <td colspan="12">
+                Document Classification: Secret [ ] Confidential [ ] Internal [ &#10003 ] Public [ ]<br />
+                User department shall ensure the classification based on Information Security Policy of MSIL</td>
+        </tr>
+    </table>
+</form>
+
+<script type="text/javascript">
+    var noPrint = true;
+    var noCopy = true;
+    var noScreenshot = true;
+    var autoBlur = true;
+</script>
+<script type="text/javascript" src="https://pdfanticopy.com/noprint.js"></script>
+</body>
+
+</html>

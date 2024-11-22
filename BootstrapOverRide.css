@@ -1,0 +1,105 @@
+/** to avoid horizontal scroll **/
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.form-control {
+    /*padding: 0px 12px;*/
+    height: 27px;
+    width: 100% !important;
+    padding: 5px 8px !important;
+    /** 1 more down **/
+}
+
+.panel-title {
+    font-weight: 100;
+    font-size: 14px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #000;
+}
+
+.panel-primary {
+    /*border-color: rgba(183, 51, 112, 0);*/
+    border: none;
+}
+
+    .panel-primary > .panel-heading {
+        background-color: #acd9e6 !important;
+    }
+
+.btn {
+    /*padding  : 4px 12px!important; /* vidya*/
+    padding: 0px 1px 1px 1px;
+    min-width: 30px;
+}
+
+.panel-heading {
+    padding: 3px 15px;
+    border-color: #fafafa !important;
+}
+
+.modal-header {
+    color: white;
+    padding: 1px 0px 1px 11px;
+    font-family: serif;
+    padding: 9px 15px;
+    border-bottom: 1px solid #eee;
+    /*background-color: #3C70B9!important;	// arun*/
+    background-color: #0480be;
+    // vid border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+}
+
+.btn-info {
+    background-color: #428bca !important;
+}
+
+.panel-body {
+    padding-top: 6px;
+}
+
+
+/** search screen **/
+label {
+    vertical-align: -webkit-baseline-middle;
+}
+
+.form-control {
+    /** 1 up **/
+    margin: 3px 0px;
+}
+
+
+
+/* vidya codes */
+#uploadModal .modal-dialog {
+    width: auto;
+    margin-left: 250px;
+    margin-right: 250px;
+    margin-top: 50px;
+}
+
+.bg-ringi {
+    padding: 5px;
+    background: #3c70b9;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+}
+
+.modal .btn {
+    padding: -1px 12px !important;
+}
+
+.bg-ringi-stakeholder {
+    padding: 5px;
+    background: #778899;
+    color: #fff;
+    text-align: left;
+    font-weight: bold;
+}
